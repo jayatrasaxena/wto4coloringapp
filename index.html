@@ -56,6 +56,14 @@
         button.active {
             background-color: #34C759; /* Green for ON */
         }
+button.on-layer1 { background-color: #FF0000; } /* Red */
+button.on-layer2 { background-color: #0000FF; } /* Blue */
+button.on-layer3 { background-color: #00FFFF; } /* Cyan */
+button.on-layer4 { background-color: #8B0000; } /* Dark Red */
+button.on-layer5 { background-color: #FF8C00; } /* Dark Orange */
+button.on-layer6 { background-color: #EE82EE; } /* Violet */
+button.on-layer7 { background-color: #008B8B; } /* Dark Cyan */
+button.on-layer8 { background-color: #8B008B; } /* Dark Magenta */
 
         button:hover {
             opacity: 0.8;
@@ -79,28 +87,28 @@
 </div>
 
 <div class="controls">
-    <button onclick="toggle('l1', this)">\( 1 \stackrel{2}{\downarrow} 0 \) </button>
-    <button onclick="toggle('l2', this)">\( 2 \stackrel{3}{\downarrow} 1 \)</button>
-    <button onclick="toggle('l3', this)">\( 2 \stackrel{3}{\searrow} 0 \)</button>
-    <button onclick="toggle('l4', this)">\(2 \stackrel{3}{\swarrow} 0\) </button>
-    <button onclick="toggle('l5', this)">\( 2 \stackrel{4}{\searrow} 0 \)</button>
-    <button onclick="toggle('l6', this)">\( 3 \stackrel{4}{\swarrow} 0 \)</button>
-    <button onclick="toggle('l7', this)">\( 3 \stackrel{4}{\downarrow} 1 \)</button>
-    <button onclick="toggle('l8', this)">\( 3 \stackrel{4}{\searrow} 2 \)</button>
+    <button onclick="toggle('l1', this, 'on-layer1')">\( 1 \stackrel{2}{\downarrow} 0 \) </button>
+    <button onclick="toggle('l2', this, 'on-layer2')">\( 2 \stackrel{3}{\downarrow} 1 \)</button>
+    <button onclick="toggle('l3', this, 'on-layer3')">\( 2 \stackrel{3}{\searrow} 0 \)</button>
+    <button onclick="toggle('l4', this, 'on-layer4')">\(2 \stackrel{3}{\swarrow} 0\) </button>
+    <button onclick="toggle('l5', this, 'on-layer5')">\( 2 \stackrel{4}{\searrow} 0 \)</button>
+    <button onclick="toggle('l6', this, 'on-layer6')">\( 3 \stackrel{4}{\swarrow} 0 \)</button>
+    <button onclick="toggle('l7', this, 'on-layer7')">\( 3 \stackrel{4}{\downarrow} 1 \)</button>
+    <button onclick="toggle('l8', this, 'on-layer8')">\( 3 \stackrel{4}{\searrow} 2 \)</button>
 </div>
 
 <script>
-    function toggle(layerId, btn) {
-        const img = document.getElementById(layerId);
-        
-        if (img.style.opacity === "0" || img.style.opacity === "") {
-            img.style.opacity = "1";
-            btn.classList.add('active'); // Turns the button green
-        } else {
-            img.style.opacity = "0";
-            btn.classList.remove('active'); // Turns the button back to gray
-        }
+function toggle(layerId, btn, colorClass) {
+    const img = document.getElementById(layerId);
+    
+    if (img.style.opacity === "0" || img.style.opacity === "") {
+        img.style.opacity = "1";
+        btn.classList.add(colorClass); // Adds the specific color
+    } else {
+        img.style.opacity = "0";
+        btn.classList.remove(colorClass); // Removes the specific color
     }
+}
 </script>
 
 </body>
