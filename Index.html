@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+	<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        /* 1. THE BOX: Adjust width/height to fit your specific images */
+        .viewer-container {
+            position: relative;
+            width: 100%;       /* Responsive width */
+            max-width: 1180px;  /* Set this to your desired display size */
+            aspect-ratio: 16/9; /* Forces a square. Change to 3/4 or 4/3 if needed */
+            margin: 0 auto;
+            border: 1px solid #ddd;
+            overflow: hidden;
+            background: #f9f9f9;
+        }
+
+        /* 2. THE LAYERS: This handles rotation and scaling */
+        .layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* Keeps image from stretching ugly */
+            
+            /* Apply 90deg rotation and 80% scale down */
+            transform: rotate(90deg) scale(1.4);
+            
+            /* Smooth transition when turning on/off */
+            transition: opacity 0.3s ease;
+        }
+
+        /* 3. THE BUTTONS */
+        .controls {
+            text-align: center;
+            padding: 20px;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+	button {
+            padding: 10px 15px;
+            margin: 5px;
+            cursor: pointer;
+            background-color: #8E8E93; /* Neutral Gray for OFF */
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+
+        /* ACTIVE BUTTON STATE (ON) */
+        button.active {
+            background-color: #34C759; /* Green for ON */
+        }
+
+        button:hover {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+
+<div class="viewer-container">
+    <img src="layer0.svg" class="layer" id="base">
+    
+    <img src="layer1.svg" class="layer" id="l1" style="opacity: 0;">
+    <img src="layer2.svg" class="layer" id="l2" style="opacity: 0;">
+    <img src="layer3.svg" class="layer" id="l3" style="opacity: 0;">
+    <img src="layer4.svg" class="layer" id="l4" style="opacity: 0;">
+    <img src="layer5.svg" class="layer" id="l5" style="opacity: 0;">
+    <img src="layer6.svg" class="layer" id="l6" style="opacity: 0;">
+    <img src="layer7.svg" class="layer" id="l7" style="opacity: 0;">
+    <img src="layer8.svg" class="layer" id="l8" style="opacity: 0;">
+</div>
+
+<div class="controls">
+    <button onclick="toggle('l1', this)">\( 1 \stackrel{2}{\downarrow} 0 \) </button>
+    <button onclick="toggle('l2', this)">\( 2 \stackrel{3}{\downarrow} 1 \)</button>
+    <button onclick="toggle('l3', this)">\( 2 \stackrel{3}{\swarrow} 0 \)</button>
+    <button onclick="toggle('l4', this)">\(2 \stackrel{3}{\searrow} 0\) </button>
+    <button onclick="toggle('l5', this)">\( 2 \stackrel{4}{\swarrow} 0 \)</button>
+    <button onclick="toggle('l6', this)">\( 3 \stackrel{4}{\searrow} 0 \)</button>
+    <button onclick="toggle('l7', this)">\( 3 \stackrel{4}{\downarrow} 1 \)</button>
+    <button onclick="toggle('l8', this)">\( 3 \stackrel{4}{\swarrow} 2 \)</button>
+</div>
+
+<script>
+    function toggle(layerId, btn) {
+        const img = document.getElementById(layerId);
+        
+        if (img.style.opacity === "0" || img.style.opacity === "") {
+            img.style.opacity = "1";
+            btn.classList.add('active'); // Turns the button green
+        } else {
+            img.style.opacity = "0";
+            btn.classList.remove('active'); // Turns the button back to gray
+        }
+    }
+</script>
+
+</body>
+</html>
